@@ -724,7 +724,7 @@ class CookieStore(commands.Cog):
         if stuff == []:
             desc = "Nothing to see here."
         else:
-            predesc = "Suckamydicka"
+            predesc = "So here is some writing to go before the shops inventory with a new line command on the end. Hopefully this will work and all will be well\n"
             desc = predesc + ("\n".join(stuff))
         page_list = []
         for page in pagify(desc, delims=["\n"], page_length=1000):
