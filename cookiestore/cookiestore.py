@@ -724,12 +724,12 @@ class CookieStore(commands.Cog):
         if stuff == []:
             desc = "Nothing to see here."
         else:
-            desc = "Here are some words\nHere are some more.\n\n\n\n".join(stuff)
+            desc = "\n".join(stuff)
         page_list = []
         for page in pagify(desc, delims=["\n"], page_length=1000):
             embed = discord.Embed(
                 colour=await ctx.embed_colour(),
-                description=page,
+                description="willy"page,
                 timestamp=datetime.now(),
             )
             embed.set_author(
