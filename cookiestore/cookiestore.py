@@ -595,6 +595,7 @@ class CookieStore(commands.Cog):
         if is_role:
             role_obj = get(ctx.guild.roles, name=item)
             if role_obj:
+                quantity = int(role.get("quantity"))
                 quantity += 1
                 await self.config.guild(ctx.guild).roles.set_raw(
                     item, "quantity", value=quantity
