@@ -719,7 +719,7 @@ class CookieStore(commands.Cog):
             role = await self.config.guild(ctx.guild).roles.get_raw(r)
             price = int(role.get("price"))
             quantity = int(role.get("quantity"))
-            role_text = f"__Role:__ **{role_obj.mention}** | __Price:__ {price} {credits_name} | __Quantity:__ {quantity}"
+            role_text = f"__Role:__ **{role_obj}** | __Price:__ {price} {credits_name} | __Quantity:__ {quantity}"
             stuff.append(role_text)
         if stuff == []:
             desc = "Nothing to see here."
