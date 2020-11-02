@@ -574,6 +574,7 @@ class CookieStore(commands.Cog):
     async def store_return(self, ctx: commands.Context, *, item: str):
         """Return an item, you will only get 50% of the price."""
         enabled = await self.config.guild(ctx.guild).enabled()
+        credits_name = await bank.get_currency_name(ctx.guild)
         if not enabled:
             return await ctx.send("Uh oh, store is disabled.")
         cookies = int(
@@ -602,7 +603,7 @@ class CookieStore(commands.Cog):
         await self.config.member(ctx.author).inventory.clear_raw(item)
         await bank.deposit_credits(ctx.author, return_price)
         await ctx.send(
-            f"You have returned {item} and got {return_price} :cookie: back."
+            f"You have returned {item} and got {return_price} {credits_name} back."
         )
 
     @commands.command()
