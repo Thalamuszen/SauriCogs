@@ -729,7 +729,7 @@ class CookieStore(commands.Cog):
         for page in pagify(desc, delims=["\n"], page_length=1000):
             embed = discord.Embed(
                 colour=await ctx.embed_colour(),
-                description="willy"page,
+                description=page,
                 timestamp=datetime.now(),
             )
             embed.set_author(
