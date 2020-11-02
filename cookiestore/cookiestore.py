@@ -600,7 +600,7 @@ class CookieStore(commands.Cog):
         return_price = price * 0.5
         cookies += return_price
         await self.config.member(ctx.author).inventory.clear_raw(item)
-        await bank.withdraw_credits(ctx.author, return_price)
+        await bank.deposit_credits(ctx.author, cookies)
         await ctx.send(
             f"You have returned {item} and got {return_price} :cookie: back."
         )
