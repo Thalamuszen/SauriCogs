@@ -597,10 +597,10 @@ class CookieStore(commands.Cog):
                 await ctx.author.remove_roles(role_obj)
         redeemed = info.get("redeemed")
         price = int(info.get("price"))
-        return_price = price * 0.5
+        return_price = int(round(price * 0.5))
         cookies += return_price
         await self.config.member(ctx.author).inventory.clear_raw(item)
-        await bank.deposit_credits(ctx.author, cookies)
+        await bank.deposit_credits(ctx.author, return_price)
         await ctx.send(
             f"You have returned {item} and got {return_price} :cookie: back."
         )
