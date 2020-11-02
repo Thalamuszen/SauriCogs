@@ -578,7 +578,7 @@ class CookieStore(commands.Cog):
         if not enabled:
             return await ctx.send("Uh oh, store is disabled.")
         cookies = int(
-            await self.bot.get_cog("Cookies").config.member(ctx.author).cookies()
+            await bank.get_balance(ctx.author)
         )
         inventory = await self.config.member(ctx.author).inventory.get_raw()
 
@@ -605,7 +605,7 @@ class CookieStore(commands.Cog):
         return_price = price * 0.5
         cookies += return_price
         await self.config.member(ctx.author).inventory.clear_raw(item)
-        await self.bot.get_cog("Cookies").config.member(ctx.author).cookies.set(cookies)
+        await bank.withdraw_credits(ctx.author, return_price)
         await ctx.send(
             f"You have returned {item} and got {return_price} :cookie: back."
         )
