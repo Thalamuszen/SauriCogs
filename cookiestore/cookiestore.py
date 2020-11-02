@@ -724,7 +724,7 @@ class CookieStore(commands.Cog):
         if stuff == []:
             desc = "Nothing to see here."
         else:
-            predesc = "So here is some writing to go before the shops inventory with a new line command on the end. `Hopefully this` will work and all will be well\n\n"
+            predesc = "When using the `!buy` command, please be aware that items are **case sensitive**.\n\n"
             desc = predesc + ("\n".join(stuff))
         page_list = []
         for page in pagify(desc, delims=["\n"], page_length=1000):
@@ -736,6 +736,6 @@ class CookieStore(commands.Cog):
             embed.set_author(
                 name=f"{ctx.guild.name}'s shop", icon_url=ctx.guild.icon_url,
             )
-            embed.set_footer(text="When buying items, keep in mind that they are case sensitive")
+            embed.set_footer(text="Shoppy™")
             page_list.append(embed)
         return page_list
