@@ -719,7 +719,7 @@ class CookieStore(commands.Cog):
         if stuff == []:
             desc = "Nothing to see here."
         else:
-            predesc = "When using the `!buy` command, please be aware that items are **case sensitive**.\n\n"
+            predesc = "When using the `!buy` command, please be aware that items are **case sensitive**.\nYou can return roles when you no longer want them with the `!return` command.\n\n"
             desc = predesc + ("\n".join(stuff))
         page_list = []
         for page in pagify(desc, delims=["\n"], page_length=1000):
