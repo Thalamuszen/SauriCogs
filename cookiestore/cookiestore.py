@@ -449,14 +449,11 @@ class CookieStore(commands.Cog):
                 if price <= cookies:
                     pass
                 else:
-                    return await ctx.send("You don't have enough credits!")
+                    return await ctx.send(f"You don't have enough {credits_name}! {price}")
                 await ctx.author.add_roles(role_obj)
                 cookies -= price
                 quantity -= 1
-                try:
-                    await bank.withdraw_credits(ctx.author, cookies)
-                except ValueError:
-                    return await ctx.send(f"Not enough {credits_name} ({cookies} required).")
+                await bank.withdraw_credits(ctx.author, price)
                 await self.config.member(ctx.author).inventory.set_raw(
                     item,
                     value={
