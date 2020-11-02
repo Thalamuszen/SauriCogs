@@ -595,7 +595,12 @@ class CookieStore(commands.Cog):
         if is_role:
             role_obj = get(ctx.guild.roles, name=item)
             if role_obj:
+                quantity += 1
+                await self.config.guild(ctx.guild).roles.set_raw(
+                    item, "quantity", value=quantity
+                )
                 await ctx.author.remove_roles(role_obj)
+                
         redeemed = info.get("redeemed")
         price = int(info.get("price"))
         return_price = int(round(price * 0.1))
