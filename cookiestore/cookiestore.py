@@ -474,6 +474,7 @@ class CookieStore(commands.Cog):
             item_info = await self.config.guild(ctx.guild).items.get_raw(item)
             price = int(item_info.get("price"))
             quantity = int(item_info.get("quantity"))
+            credits_name = await bank.get_currency_name(ctx.guild)
             redeemable = item_info.get("redeemable")
             if not redeemable:
                 redeemable = False
@@ -482,12 +483,10 @@ class CookieStore(commands.Cog):
             if price <= cookies:
                 pass
             else:
-                return await ctx.send("You don't have enough cookies!")
+                return await ctx.send(f"You don't have enough {credits_name}! This item costs {price}")
             cookies -= price
             quantity -= 1
-            await self.bot.get_cog("Cookies").config.member(ctx.author).cookies.set(
-                cookies
-            )
+            await bank.withdraw_credits(ctx.author, price)
             await self.config.guild(ctx.guild).items.set_raw(
                 item, "quantity", value=quantity
             )
