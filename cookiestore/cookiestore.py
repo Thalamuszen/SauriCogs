@@ -15,7 +15,7 @@ from redbot.core.bot import Red
 
 class CookieStore(commands.Cog):
     """
-    Store add-on for SauriCogs' Cookies cog.
+    Standalone Shop Cog.
     """
 
     __author__ = "saurichable"
@@ -35,7 +35,7 @@ class CookieStore(commands.Cog):
     @checks.admin_or_permissions(manage_guild=True)
     @commands.guild_only()
     async def store(self, ctx):
-        """Cookie store."""
+        """Overall store settings."""
         pass
 
     @store.command(name="toggle")
@@ -404,7 +404,7 @@ class CookieStore(commands.Cog):
     @commands.command()
     @commands.guild_only()
     async def shop(self, ctx: commands.Context):
-        """Display the cookie store."""
+        """Display the shop."""
         enabled = await self.config.guild(ctx.guild).enabled()
         if not enabled:
             return await ctx.send("Uh oh, store is disabled.")
