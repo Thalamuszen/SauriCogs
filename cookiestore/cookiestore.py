@@ -629,7 +629,7 @@ class CookieStore(commands.Cog):
         else:
             desc = humanize_list(lst)
         embed = discord.Embed(
-            description=desc, colour=ctx.author.colour, timestamp=datetime.now()
+            description=desc, colour=await ctx.embed_colour(), timestamp=datetime.now()
         )
         embed.set_author(
             name=f"{ctx.author.display_name}'s inventory",
