@@ -735,5 +735,6 @@ class CookieStore(commands.Cog):
             embed.set_author(
                 name=f"{ctx.guild.name}'s shop", icon_url=ctx.guild.icon_url,
             )
+            embed.set_footer(text="When buying items, keep in mind that they are case sensitive")
             page_list.append(embed)
         return page_list
