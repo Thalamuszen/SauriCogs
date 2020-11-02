@@ -417,12 +417,12 @@ class CookieStore(commands.Cog):
     @commands.command()
     @commands.guild_only()
     async def buy(self, ctx: commands.Context, *, item: str = ""):
-        """Buy an item from the cookie store."""
+        """Buy an item from the shop."""
         enabled = await self.config.guild(ctx.guild).enabled()
         if not enabled:
             return await ctx.send("Uh oh, store is disabled.")
         cookies = int(
-            await self.bot.get_cog("Cookies").config.member(ctx.author).cookies()
+            await bank.get_balance(ctx.author)
         )
         items = await self.config.guild(ctx.guild).items.get_raw()
         roles = await self.config.guild(ctx.guild).roles.get_raw()
