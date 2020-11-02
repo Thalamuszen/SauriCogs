@@ -596,10 +596,6 @@ class CookieStore(commands.Cog):
             if role_obj:
                 await ctx.author.remove_roles(role_obj)
         redeemed = info.get("redeemed")
-        if not redeemed:
-            redeemed = False
-        if redeemed:
-            return await ctx.send("You can't return an item you have redeemed.")
         price = int(info.get("price"))
         return_price = price * 0.5
         cookies += return_price
