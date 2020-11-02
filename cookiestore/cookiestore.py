@@ -698,18 +698,19 @@ class CookieStore(commands.Cog):
         items = await self.config.guild(ctx.guild).items.get_raw()
         roles = await self.config.guild(ctx.guild).roles.get_raw()
         games = await self.config.guild(ctx.guild).games.get_raw()
+        credits_name = await bank.get_currency_name(ctx.guild)
         stuff = []
         for i in items:
             item = await self.config.guild(ctx.guild).items.get_raw(i)
             price = int(item.get("price"))
             quantity = int(item.get("quantity"))
-            item_text = f"__Item:__ **{i}** | __Price:__ {price} :cookie: | __Quantity:__ {quantity}"
+            item_text = f"__Item:__ **{i}** | __Price:__ {price} {credits_name} | __Quantity:__ {quantity}"
             stuff.append(item_text)
         for g in games:
             game = await self.config.guild(ctx.guild).games.get_raw(g)
             price = int(game.get("price"))
             quantity = int(game.get("quantity"))
-            game_text = f"__Item:__ **{g}** | __Price:__ {price} :cookie: | __Quantity:__ {quantity}"
+            game_text = f"__Item:__ **{g}** | __Price:__ {price} {credits_name} | __Quantity:__ {quantity}"
             stuff.append(game_text)
         for r in roles:
             role_obj = get(ctx.guild.roles, name=r)
@@ -718,7 +719,7 @@ class CookieStore(commands.Cog):
             role = await self.config.guild(ctx.guild).roles.get_raw(r)
             price = int(role.get("price"))
             quantity = int(role.get("quantity"))
-            role_text = f"__Role:__ **{role_obj.mention}** | __Price:__ {price} :cookie: | __Quantity:__ {quantity}"
+            role_text = f"__Role:__ **{role_obj.mention}** | __Price:__ {price} {credits_name} | __Quantity:__ {quantity}"
             stuff.append(role_text)
         if stuff == []:
             desc = "Nothing to see here."
