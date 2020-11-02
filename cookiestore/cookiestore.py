@@ -448,7 +448,7 @@ class CookieStore(commands.Cog):
                 if price <= cookies:
                     pass
                 else:
-                    return await ctx.send("You don't have enough cookies!")
+                    return await ctx.send("You don't have enough credits!")
                 await ctx.author.add_roles(role_obj)
                 cookies -= price
                 quantity -= 1
