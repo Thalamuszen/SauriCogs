@@ -443,6 +443,7 @@ class CookieStore(commands.Cog):
                 role = await self.config.guild(ctx.guild).roles.get_raw(item)
                 price = int(role.get("price"))
                 quantity = int(role.get("quantity"))
+                credits_name = await bank.get_currency_name(ctx.guild)
                 if quantity == 0:
                     return await ctx.send("Uh oh, this item is out of stock.")
                 if price <= cookies:
@@ -452,9 +453,10 @@ class CookieStore(commands.Cog):
                 await ctx.author.add_roles(role_obj)
                 cookies -= price
                 quantity -= 1
-                await self.bot.get_cog("Cookies").config.member(ctx.author).cookies.set(
-                    cookies
-                )
+                try:
+                    await bank.withdraw_credits(ctx.author, cookies)
+                except ValueError:
+                    return await ctx.send(f"Not enough {credits_name} ({cookies} required).")
                 await self.config.member(ctx.author).inventory.set_raw(
                     item,
                     value={
